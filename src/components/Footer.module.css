@@ -1,0 +1,20 @@
+.footer {
+  text-align: center;
+  padding: 36px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  color: rgba(232, 244, 248, 0.3);
+}
+
+.name {
+  color: #00FFB2;
+  font-weight: 700;
+}
+
+.sub {
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}

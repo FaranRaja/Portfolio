@@ -1,0 +1,99 @@
+.section {
+  padding: 100px 60px;
+  background: rgba(0, 255, 178, 0.01);
+  position: relative;
+}
+
+.inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #00FFB2;
+  margin-bottom: 12px;
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #00FFB2, #00BFFF);
+  border-radius: 2px;
+  margin: 0 auto 48px;
+}
+
+.title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.bio {
+  font-size: 16px;
+  color: rgba(232, 244, 248, 0.6);
+  line-height: 1.85;
+  margin-bottom: 32px;
+}
+
+.emailBtn {
+  display: inline-block;
+  padding: 16px 44px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #00FFB2, #00BFFF);
+  color: #050a0e;
+  font-weight: 800;
+  font-size: 15px;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.emailBtn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 40px rgba(0, 255, 178, 0.25);
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.socialBtn:hover {
+  transform: translateY(-3px);
+  opacity: 0.88;
+}
+
+.socialIcon {
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+  .socials { flex-direction: column; align-items: center; }
+}
