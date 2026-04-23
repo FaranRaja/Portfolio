@@ -1,6 +1,6 @@
 import { useEffect, useState, Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
-import { GitFork, Link, ArrowDown, ExternalLink } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { personal } from '../data/portfolio';
 
 // Lazy-load the heavy 3D canvas — only downloads Three.js after page paint
