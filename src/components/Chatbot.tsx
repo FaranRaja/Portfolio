@@ -15,57 +15,43 @@ const SUGGESTED = [
   'How can I contact him?',
 ];
 
-// Gemini API call
-async function askGemini(history: Message[], userMessage: string): Promise<string> {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-
-  if (!apiKey) {
-    return "API key not configured. Please add VITE_GEMINI_API_KEY to your .env file. You can reach Faran directly at faranraja011@gmail.com";
-  }
-
-  // Build conversation history for Gemini
-  const contents = [
-    // Inject system knowledge as first user turn + model ack
+// Grok API call via Vercel Serverless Function
+async function askGrok(history: Message[], userMessage: string): Promise<string> {
+  // Build conversation history for Grok
+  const messages = [
+    // Inject system knowledge
     {
-      role: 'user',
-      parts: [{ text: `[System context — always follow this]\n${chatbotKnowledge}\n\nAcknowledge that you understand your role.` }],
-    },
-    {
-      role: 'model',
-      parts: [{ text: "Understood! I'm Faran's portfolio assistant. I'll answer questions about his skills, projects, background, and contact information in a friendly, professional way." }],
+      role: 'system',
+      content: `[System context — always follow this]\n${chatbotKnowledge}\n\nYou are Faran's portfolio assistant. Answer questions about his skills, projects, background, and contact information in a friendly, professional way.`
     },
     // Previous conversation turns
     ...history.slice(1).map((m) => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }],
+      role: m.role,
+      content: m.content,
     })),
     // New message
-    { role: 'user', parts: [{ text: userMessage }] },
+    { role: 'user', content: userMessage },
   ];
 
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents,
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 512,
-        },
-      }),
-    }
-  );
+  // Call our secure Vercel API route
+  const res = await fetch("/api/chat", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      messages,
+    }),
+  });
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    console.error('Gemini error:', err);
-    throw new Error('Gemini API error');
+    console.error('Serverless error:', err);
+    throw new Error('Chat API error');
   }
 
   const data = await res.json();
-  return data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't get a response. Please try again!";
+  return data?.choices?.[0]?.message?.content || "Sorry, I couldn't get a response. Please try again!";
 }
 
 export default function Chatbot() {
@@ -101,7 +87,7 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const reply = await askGemini(messages, text);
+      const reply = await askGrok(messages, text);
       setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
     } catch {
       setMessages((prev) => [
@@ -173,7 +159,7 @@ export default function Chatbot() {
                 <p className="text-sm font-display font-semibold text-text">Faran's Assistant</p>
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                  <span className="text-xs text-muted font-mono">Online · Powered by Gemini</span>
+                  <span className="text-xs text-muted font-mono">Online · Powered by Grok</span>
                 </div>
               </div>
             </div>
