@@ -16,7 +16,7 @@ function Stars() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#a78bfa" size={0.08} transparent opacity={0.5} />
+      <pointsMaterial color="#a3a3a3" size={0.08} transparent opacity={0.5} />
     </points>
   );
 }
@@ -51,16 +51,16 @@ function Laptop() {
     groupRef.current.position.y = Math.sin(t * 0.55) * 0.1;
   });
 
-  const accentColor = '#7c6aff';
-  const baseColor   = '#1a1a2e';
-  const screenBg    = '#0a0a1a';
+  const accentColor = '#ffffff';
+  const baseColor   = '#111111';
+  const screenBg    = '#050505';
 
   // Code line data: [x-offset, y-offset, width]
   const codeLines: [number, number, number][] = [
     [-0.2, 0.38, 0.55], [0.15, 0.2, 0.7], [-0.1, 0.02, 0.45],
     [0.1, -0.16, 0.6],  [-0.05, -0.34, 0.5],
   ];
-  const lineColors = ['#a78bfa', '#7c6aff', '#c4b5fd', '#a78bfa', '#7c6aff'];
+  const lineColors = ['#a3a3a3', '#ffffff', '#737373', '#a3a3a3', '#ffffff'];
 
   return (
     <group ref={groupRef}>
@@ -120,7 +120,7 @@ function Particles() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#7c6aff" size={0.022} transparent opacity={0.55} />
+      <pointsMaterial color="#ffffff" size={0.022} transparent opacity={0.55} />
     </points>
   );
 }
@@ -131,12 +131,12 @@ function Scene() {
       <Stars />
       <Particles />
       <ambientLight intensity={0.2} />
-      <pointLight position={[4, 4, 4]}   intensity={2.5} color="#7c6aff" />
-      <pointLight position={[-4, -2, 3]} intensity={1.2} color="#a78bfa" />
-      <pointLight position={[0, 0.9, -0.3]} intensity={1} color="#7c6aff" distance={3} />
-      <Ring radius={2.1} speed={0.22} color="#7c6aff" rx={0.4} ry={1}   rz={0.2} />
-      <Ring radius={2.7} speed={0.14} color="#a78bfa" rx={1}   ry={0.2} rz={0.5} />
-      <Ring radius={3.2} speed={0.09} color="#4f46e5" rx={0.2} ry={0.5} rz={1}   />
+      <pointLight position={[4, 4, 4]}   intensity={2.5} color="#ffffff" />
+      <pointLight position={[-4, -2, 3]} intensity={1.2} color="#a3a3a3" />
+      <pointLight position={[0, 0.9, -0.3]} intensity={1} color="#ffffff" distance={3} />
+      <Ring radius={2.1} speed={0.22} color="#ffffff" rx={0.4} ry={1}   rz={0.2} />
+      <Ring radius={2.7} speed={0.14} color="#a3a3a3" rx={1}   ry={0.2} rz={0.5} />
+      <Ring radius={3.2} speed={0.09} color="#444444" rx={0.2} ry={0.5} rz={1}   />
       <Laptop />
       <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5}
         maxPolarAngle={Math.PI / 1.7} minPolarAngle={Math.PI / 2.6} />

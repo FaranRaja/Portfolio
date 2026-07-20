@@ -4,17 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#07070f',
-        surface: '#0e0e1a',
-        card: '#13131f',
-        accent: '#7c6aff',
-        accent2: '#a78bfa',
-        muted: '#6b6b8a',
-        text: '#e8e8f0',
+        bg: '#f3f3f1', // Linktree Sand (Light Mode Base)
+        surface: '#ffffff', // White
+        card: '#e9c0e9', // Linktree Pink/Lilac
+        border: '#1e2330', // Charcoal
+        accent: '#d2e823', // Linktree Neon Yellow
+        accent2: '#254f1a', // Linktree Deep Green
+        text: '#1e2330', // Charcoal/Black
+        'text-light': '#ffffff', // White
       },
       fontFamily: {
-        display: ['"Syne"', 'sans-serif'],
-        body: ['"DM Sans"', 'sans-serif'],
+        // Linktree uses a very bold sans-serif, let's use Inter but boldest weights
+        display: ['"Inter"', 'sans-serif'],
+        body: ['"Inter"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
     },

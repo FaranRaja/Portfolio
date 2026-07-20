@@ -92,6 +92,17 @@ export const projects = [
     featured: false,
     color: '#6d6aff',
   },
+  {
+    id: 6,
+    title: 'StudySync',
+    subtitle: 'Study Management App',
+    description: 'A study productivity platform that helps students sync their study materials and schedule effectively. Built with modern JavaScript.',
+    tags: ['JavaScript', 'Web Platform'],
+    github: 'https://github.com/FaranRaja/StudySync',
+    live: null,
+    featured: false,
+    color: '#34d399',
+  },
 ];
 
 export const education = [
@@ -99,7 +110,7 @@ export const education = [
     institution: 'COMSATS University Islamabad',
     degree: 'Bachelor of Science in Software Engineering',
     period: '2023 – 2027',
-    detail: 'GPA: 3.3 · Semester 6',
+    detail: 'GPA: 3.3 · Semester 7',
     current: true,
   },
   {
@@ -109,6 +120,15 @@ export const education = [
     detail: 'O-Levels: A · A-Levels: A',
     current: false,
   },
+];
+
+export const experience = [
+  {
+    title: 'Software Engineer Intern',
+    company: 'Decimal Solutions',
+    period: 'July – August 2027',
+    description: 'Built scalable web applications in a professional development environment.',
+  }
 ];
 
 // Chatbot knowledge base

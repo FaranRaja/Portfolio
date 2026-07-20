@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,26 +6,23 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background-color: #07070f; color: #e8e8f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+body { background-color: #f3f3f1; color: #1e2330; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #07070f; }
-::-webkit-scrollbar-thumb { background: #7c6aff; border-radius: 2px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f3f3f1; }
+::-webkit-scrollbar-thumb { background: #d2e823; border-radius: 4px; }
 
-* { cursor: none; }
-::selection { background: #7c6aff33; color: #e8e8f0; }
+::selection { background: #d2e823; color: #1e2330; }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, #7c6aff, #a78bfa, #c4b5fd);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .neo-shadow {
+    box-shadow: 4px 4px 0px #1e2330;
   }
-  .border-gradient {
-    border: 1px solid transparent;
-    background: linear-gradient(#13131f, #13131f) padding-box,
-                linear-gradient(135deg, #7c6aff44, #a78bfa22) border-box;
+  .neo-shadow-hover {
+    transition: all 0.2s ease;
   }
-  .glow { box-shadow: 0 0 40px #7c6aff22, 0 0 80px #7c6aff11; }
+  .neo-shadow-hover:hover {
+    box-shadow: 6px 6px 0px #1e2330;
+    transform: translate(-2px, -2px);
+  }
 }
