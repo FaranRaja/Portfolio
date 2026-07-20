@@ -34,7 +34,7 @@ const getTechIconUrl = (name: string) => {
 
 // Reusable pill button
 const PillButton = ({ children, href, className = "", primary = false, onClick, type = "button", disabled = false }: any) => {
-  const baseClasses = `inline-flex items-center gap-2 justify-center font-display font-black text-lg px-8 py-4 rounded-full border-4 border-border neo-shadow transition-all hover:translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_#1e2330] ${primary ? 'bg-text text-white' : 'bg-surface text-text hover:bg-accent'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
+  const baseClasses = `inline-flex items-center gap-2 justify-center font-display font-black text-lg px-8 py-4 rounded-full border-4 border-border neo-shadow transition-all hover:translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-shadow)] ${primary ? 'bg-text text-text-light' : 'bg-surface text-text hover:bg-accent'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
   
   if (href) {
     return (
@@ -52,11 +52,11 @@ const PillButton = ({ children, href, className = "", primary = false, onClick, 
 
 // Marquee component for big section titles
 const Marquee = ({ text, bg = "bg-accent" }: { text: string, bg?: string }) => (
-  <div className={`w-full overflow-hidden ${bg} border-y-4 border-border py-4 flex whitespace-nowrap -rotate-1 scale-105 my-24 shadow-[0_4px_0_#1e2330]`}>
+  <div className={`w-full overflow-hidden ${bg} border-y-4 border-border py-4 flex whitespace-nowrap -rotate-1 scale-105 my-24 shadow-[0_4px_0_var(--color-shadow)]`}>
     <motion.div
       animate={{ x: [0, -1035] }}
       transition={{ ease: "linear", duration: 10, repeat: Infinity }}
-      className="flex font-display font-black text-5xl md:text-6xl uppercase tracking-tighter text-text"
+      className="flex font-display font-black text-5xl md:text-6xl uppercase tracking-tighter text-border"
     >
       {[...Array(8)].map((_, i) => (
         <span key={i} className="mx-8">{text} •</span>
@@ -68,7 +68,7 @@ const Marquee = ({ text, bg = "bg-accent" }: { text: string, bg?: string }) => (
 export default function MarketingLayout() {
   // Fun vibrant colors for projects
   const sectionColors = ['bg-[#e9c0e9]', 'bg-[#d2e823]', 'bg-[#7bd0e1]', 'bg-[#ff9a9e]', 'bg-[#a1c4fd]', 'bg-[#fbc2eb]'];
-  
+
   // Contact Form State
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
@@ -97,14 +97,14 @@ export default function MarketingLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text selection:bg-accent selection:text-text">
+    <div className="min-h-screen bg-bg text-text selection:bg-accent selection:text-[#1e2330]">
       
       {/* Sticky Navbar */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl bg-surface rounded-full border-4 border-border p-3 flex items-center justify-between neo-shadow transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0_#1e2330]">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl bg-surface rounded-full border-4 border-border p-3 flex items-center justify-between neo-shadow transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-shadow)]">
         
         {/* Left: Logo */}
         <div className="flex-1 flex items-center gap-3 pl-4">
-          <div className="w-12 h-12 bg-accent rounded-full border-4 border-border flex items-center justify-center font-black text-2xl text-text">F</div>
+          <div className="w-12 h-12 bg-accent rounded-full border-4 border-border flex items-center justify-center font-black text-2xl text-[#1e2330]">F</div>
           <span className="font-display font-black text-2xl text-text hidden sm:block tracking-tight">faran.dev</span>
         </div>
         
@@ -119,8 +119,8 @@ export default function MarketingLayout() {
 
         {/* Right: Actions */}
         <div className="flex-1 flex items-center justify-end gap-3 pr-2">
-          <a href={personal.github} target="_blank" className="p-3 bg-card border-4 border-border rounded-full text-text transition-all hover:translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[4px_4px_0_#1e2330] hover:bg-accent"><GithubIcon /></a>
-          <a href={personal.linkedin} target="_blank" className="p-3 bg-accent border-4 border-border rounded-full text-text transition-all hover:translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[4px_4px_0_#1e2330] hover:bg-card"><LinkedinIcon /></a>
+          <a href={personal.github} target="_blank" className="p-3 bg-card border-4 border-border rounded-full text-[#1e2330] transition-all hover:translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[4px_4px_0_var(--color-shadow)] hover:bg-accent"><GithubIcon /></a>
+          <a href={personal.linkedin} target="_blank" className="p-3 bg-accent border-4 border-border rounded-full text-[#1e2330] transition-all hover:translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[4px_4px_0_var(--color-shadow)] hover:bg-card"><LinkedinIcon /></a>
           <PillButton href="#contact" className="hidden sm:flex py-3 px-8 text-base" primary>Contact Me</PillButton>
         </div>
       </nav>
@@ -131,7 +131,7 @@ export default function MarketingLayout() {
           <h1 className="font-display font-black text-6xl md:text-8xl lg:text-[110px] leading-[0.9] tracking-tighter mb-8 text-text">
             Build <br/>
             ideas. <br/>
-            <span className="inline-block bg-accent px-4 py-2 border-4 border-border rounded-[2rem] neo-shadow rotate-[-2deg] mt-2">Faster.</span>
+            <span className="inline-block bg-accent px-4 py-2 border-4 border-border rounded-[2rem] neo-shadow rotate-[-2deg] mt-2 text-[#1e2330]">Faster.</span>
           </h1>
           <p className="font-body text-xl md:text-2xl font-bold max-w-md mb-10 text-text/80 leading-relaxed">
             Hi, I'm {personal.name}. A {personal.title} building scalable applications.
@@ -150,14 +150,14 @@ export default function MarketingLayout() {
           {/* Main Card */}
           <div className="absolute inset-0 bg-[#e9c0e9] rounded-[3rem] border-4 border-border neo-shadow flex flex-col items-center justify-center p-8 text-center -rotate-3 hover:rotate-0 transition-transform duration-500">
             <div className="w-40 h-40 bg-accent rounded-[2rem] border-4 border-border mb-8 neo-shadow overflow-hidden flex items-center justify-center">
-              <span className="font-display font-black text-[100px] text-text leading-none mt-4">F</span>
+              <span className="font-display font-black text-[100px] text-[#1e2330] leading-none mt-4">F</span>
             </div>
-            <h2 className="font-display font-black text-4xl text-text mb-4">@FaranRaja</h2>
-            <p className="font-body font-black text-xl text-text bg-surface border-4 border-border px-6 py-3 rounded-full neo-shadow shadow-[0_4px_0_#1e2330]">Full Stack Dev</p>
+            <h2 className="font-display font-black text-4xl text-[#1e2330] mb-4">@FaranRaja</h2>
+            <p className="font-body font-black text-xl text-text bg-surface border-4 border-border px-6 py-3 rounded-full neo-shadow shadow-[0_4px_0_var(--color-shadow)]">Full Stack Dev</p>
           </div>
           
           <motion.div animate={{ y: [0, -20, 0], rotate: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute -top-10 -left-10 bg-surface w-28 h-28 rounded-2xl border-4 border-border neo-shadow flex items-center justify-center text-text"><Code size={48} /></motion.div>
-          <motion.div animate={{ y: [0, 20, 0], rotate: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} className="absolute -bottom-10 -right-10 bg-accent w-32 h-32 rounded-[2.5rem] border-4 border-border neo-shadow flex items-center justify-center text-text font-black text-3xl">MERN</motion.div>
+          <motion.div animate={{ y: [0, 20, 0], rotate: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} className="absolute -bottom-10 -right-10 bg-accent w-32 h-32 rounded-[2.5rem] border-4 border-border neo-shadow flex items-center justify-center text-[#1e2330] font-black text-3xl">MERN</motion.div>
         </motion.div>
       </section>
 
@@ -165,7 +165,7 @@ export default function MarketingLayout() {
 
       {/* About Section */}
       <section id="about" className="py-12 px-6 max-w-5xl mx-auto">
-        <div className="bg-surface border-4 border-border rounded-[3rem] p-10 md:p-16 neo-shadow hover:-translate-y-2 hover:shadow-[10px_10px_0_#1e2330] transition-all duration-300">
+        <div className="bg-surface border-4 border-border rounded-[3rem] p-10 md:p-16 neo-shadow hover:-translate-y-2 hover:shadow-[10px_10px_0_var(--color-shadow)] transition-all duration-300">
           <h2 className="font-display font-black text-5xl md:text-6xl mb-8">Who am I?</h2>
           <p className="font-body text-2xl leading-relaxed text-text font-bold">
             {personal.summary}
@@ -183,17 +183,17 @@ export default function MarketingLayout() {
              <motion.div 
                key={`exp-${index}`}
                initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-               className="bg-[#7bd0e1] border-4 border-border rounded-[2.5rem] p-8 md:p-12 neo-shadow flex flex-col md:flex-row justify-between gap-8 hover:-translate-y-1 hover:shadow-[8px_8px_0_#1e2330] transition-all duration-300"
+               className="bg-[#7bd0e1] border-4 border-border rounded-[2.5rem] p-8 md:p-12 neo-shadow flex flex-col md:flex-row justify-between gap-8 hover:-translate-y-1 hover:shadow-[8px_8px_0_var(--color-shadow)] transition-all duration-300 text-[#1e2330]"
              >
                <div>
                  <h3 className="font-display font-black text-4xl mb-4 leading-tight">{exp.title}</h3>
-                 <p className="font-body font-black text-2xl text-text/80">{exp.company}</p>
+                 <p className="font-body font-black text-2xl opacity-80">{exp.company}</p>
                </div>
                <div className="md:text-right">
-                 <span className="inline-block bg-surface border-4 border-border rounded-full px-6 py-2 font-black text-xl neo-shadow mb-6 whitespace-nowrap">
+                 <span className="inline-block bg-surface text-text border-4 border-border rounded-full px-6 py-2 font-black text-xl neo-shadow mb-6 whitespace-nowrap">
                    {exp.period}
                  </span>
-                 <p className="font-body max-w-md font-bold text-xl text-text/90">{exp.description}</p>
+                 <p className="font-body max-w-md font-bold text-xl opacity-90">{exp.description}</p>
                </div>
              </motion.div>
           ))}
@@ -202,14 +202,14 @@ export default function MarketingLayout() {
             <motion.div 
               key={`edu-${index}`}
               initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-surface border-4 border-border rounded-[2.5rem] p-8 md:p-12 neo-shadow flex flex-col md:flex-row justify-between gap-8 hover:-translate-y-1 hover:shadow-[8px_8px_0_#1e2330] transition-all duration-300"
+              className="bg-surface border-4 border-border rounded-[2.5rem] p-8 md:p-12 neo-shadow flex flex-col md:flex-row justify-between gap-8 hover:-translate-y-1 hover:shadow-[8px_8px_0_var(--color-shadow)] transition-all duration-300"
             >
               <div>
                 <h3 className="font-display font-black text-4xl mb-4 leading-tight">{edu.degree}</h3>
                 <p className="font-body font-black text-2xl text-text/70">{edu.institution}</p>
               </div>
               <div className="md:text-right">
-                <span className="inline-block bg-[#e9c0e9] border-4 border-border rounded-full px-6 py-2 font-black text-xl neo-shadow mb-6 whitespace-nowrap">
+                <span className="inline-block bg-[#e9c0e9] text-[#1e2330] border-4 border-border rounded-full px-6 py-2 font-black text-xl neo-shadow mb-6 whitespace-nowrap">
                   {edu.period}
                 </span>
                 <p className="font-body max-w-md font-bold text-xl text-text/80">{edu.detail}</p>
@@ -223,7 +223,6 @@ export default function MarketingLayout() {
 
       {/* Projects Section */}
       <section id="projects" className="py-12 px-6 max-w-[95%] xl:max-w-7xl mx-auto">
-        {/* Changed to 3 columns on LG */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, i) => {
             const cardBg = sectionColors[i % sectionColors.length];
@@ -231,9 +230,8 @@ export default function MarketingLayout() {
             <motion.div 
               key={project.id}
               initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className={`${cardBg} rounded-[3.5rem] p-8 border-4 border-border neo-shadow flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_#1e2330] transition-all duration-300`}
+              className={`${cardBg} text-[#1e2330] rounded-[3.5rem] p-8 border-4 border-border neo-shadow flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_var(--color-shadow)] transition-all duration-300`}
             >
-              {/* distinct abstract UI Mockups based on index */}
               <div className="w-full aspect-video rounded-[2.5rem] border-4 border-border mb-8 overflow-hidden bg-surface flex flex-col relative neo-shadow">
                  <div className="w-full h-10 bg-border flex items-center px-4 gap-2">
                    <div className="w-3 h-3 bg-red-400 rounded-full border-2 border-surface"></div>
@@ -241,25 +239,24 @@ export default function MarketingLayout() {
                    <div className="w-3 h-3 bg-green-400 rounded-full border-2 border-surface"></div>
                  </div>
                  <div className="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
-                    {/* Abstract Shapes inside the mockup */}
                     {i % 3 === 0 && <div className="absolute w-24 h-24 bg-accent rounded-full -top-4 -left-4 border-4 border-border mix-blend-multiply opacity-80" />}
                     {i % 3 === 1 && <div className="absolute w-full h-12 bg-[#7bd0e1] -rotate-12 border-y-4 border-border opacity-50" />}
-                    {i % 3 === 2 && <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#1e2330 3px, transparent 3px)', backgroundSize: '15px 15px', opacity: 0.1 }}></div>}
+                    {i % 3 === 2 && <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(var(--color-text) 3px, transparent 3px)', backgroundSize: '15px 15px', opacity: 0.1 }}></div>}
                     
                     <h3 className="font-display font-black text-3xl text-center text-text z-10">{project.title}</h3>
                  </div>
               </div>
 
               <h3 className="font-display font-black text-4xl mb-4 leading-none">{project.title}</h3>
-              <p className="font-body font-bold text-lg mb-8 text-text/90 flex-grow leading-relaxed">{project.description}</p>
+              <p className="font-body font-bold text-lg mb-8 opacity-90 flex-grow leading-relaxed">{project.description}</p>
               
               <div className="flex flex-wrap gap-2 mb-8">
                 {project.tags.slice(0, 3).map(tag => (
-                  <span key={tag} className="text-sm font-black px-4 py-2 bg-surface text-text border-4 border-border rounded-full shadow-[2px_2px_0_#1e2330]">{tag}</span>
+                  <span key={tag} className="text-sm font-black px-4 py-2 bg-surface text-text border-4 border-border rounded-full shadow-[2px_2px_0_var(--color-shadow)]">{tag}</span>
                 ))}
               </div>
 
-              <a href={project.github} target="_blank" className="w-full py-5 rounded-full border-4 border-border font-black text-xl text-center shadow-[4px_4px_0_#1e2330] bg-text text-white hover:bg-border hover:-translate-y-1 hover:shadow-[6px_6px_0_#1e2330] transition-all">
+              <a href={project.github} target="_blank" className="w-full py-5 rounded-full border-4 border-border font-black text-xl text-center shadow-[4px_4px_0_var(--color-shadow)] bg-text text-text-light hover:bg-border hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-shadow)] transition-all">
                 View Repository
               </a>
             </motion.div>
@@ -278,7 +275,7 @@ export default function MarketingLayout() {
                <motion.div 
                  key={skill}
                  initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                 className="flex items-center gap-3 px-8 py-4 bg-surface border-4 border-border rounded-full text-text font-black font-display text-2xl neo-shadow hover:-translate-y-2 hover:bg-accent transition-all cursor-crosshair hover:shadow-[8px_8px_0_#1e2330]"
+                 className="flex items-center gap-3 px-8 py-4 bg-surface border-4 border-border rounded-full text-text font-black font-display text-2xl neo-shadow hover:-translate-y-2 hover:bg-accent hover:text-[#1e2330] transition-all hover:shadow-[8px_8px_0_var(--color-shadow)]"
                >
                  {iconUrl && <img src={iconUrl} alt={skill} className="w-8 h-8 object-contain" />}
                  {skill}
@@ -296,8 +293,8 @@ export default function MarketingLayout() {
           <h2 className="font-display font-black text-5xl md:text-6xl mb-10">Let's build together.</h2>
           
           {sent ? (
-            <div className="bg-accent border-4 border-border rounded-3xl p-12 text-center shadow-[6px_6px_0_#1e2330]">
-              <CheckCircle size={64} className="text-text mx-auto mb-6" />
+            <div className="bg-accent border-4 border-border rounded-3xl p-12 text-center text-[#1e2330] shadow-[6px_6px_0_var(--color-shadow)]">
+              <CheckCircle size={64} className="mx-auto mb-6" />
               <h3 className="font-display font-black text-4xl mb-4">Message sent!</h3>
               <p className="font-body font-bold text-xl">I'll get back to you as soon as possible.</p>
             </div>
@@ -311,7 +308,7 @@ export default function MarketingLayout() {
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-bg border-4 border-border rounded-2xl px-6 py-4 font-bold text-lg placeholder-text/40 focus:outline-none focus:border-accent neo-shadow-hover focus:shadow-[6px_6px_0_#1e2330] transition-all"
+                    className="w-full bg-bg border-4 border-border rounded-2xl px-6 py-4 font-bold text-lg placeholder-text/40 focus:outline-none focus:border-accent neo-shadow-hover focus:shadow-[6px_6px_0_var(--color-shadow)] transition-all"
                     placeholder="John Doe"
                   />
                 </div>
@@ -322,7 +319,7 @@ export default function MarketingLayout() {
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-bg border-4 border-border rounded-2xl px-6 py-4 font-bold text-lg placeholder-text/40 focus:outline-none focus:border-accent neo-shadow-hover focus:shadow-[6px_6px_0_#1e2330] transition-all"
+                    className="w-full bg-bg border-4 border-border rounded-2xl px-6 py-4 font-bold text-lg placeholder-text/40 focus:outline-none focus:border-accent neo-shadow-hover focus:shadow-[6px_6px_0_var(--color-shadow)] transition-all"
                     placeholder="john@email.com"
                   />
                 </div>
@@ -334,14 +331,14 @@ export default function MarketingLayout() {
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full bg-bg border-4 border-border rounded-2xl px-6 py-4 font-bold text-lg placeholder-text/40 focus:outline-none focus:border-accent neo-shadow-hover focus:shadow-[6px_6px_0_#1e2330] transition-all resize-none"
+                  className="w-full bg-bg border-4 border-border rounded-2xl px-6 py-4 font-bold text-lg placeholder-text/40 focus:outline-none focus:border-accent neo-shadow-hover focus:shadow-[6px_6px_0_var(--color-shadow)] transition-all resize-none"
                   placeholder="What's on your mind?"
                 />
               </div>
               <button
                 type="submit"
                 disabled={sending}
-                className="w-full md:w-auto bg-text text-white font-display font-black text-2xl px-12 py-5 border-4 border-border rounded-full neo-shadow-hover hover:-translate-y-2 transition-all disabled:opacity-50 flex items-center justify-center gap-4 hover:shadow-[8px_8px_0_#1e2330]"
+                className="w-full md:w-auto bg-text text-text-light font-display font-black text-2xl px-12 py-5 border-4 border-border rounded-full neo-shadow-hover hover:-translate-y-2 transition-all disabled:opacity-50 flex items-center justify-center gap-4 hover:shadow-[8px_8px_0_var(--color-shadow)]"
               >
                 {sending ? 'Sending...' : 'Send Message'} <Send size={24} />
               </button>
@@ -354,11 +351,11 @@ export default function MarketingLayout() {
       <footer className="bg-text border-t-8 border-border py-16 text-center px-6">
         <div className="flex flex-col items-center gap-8">
           <div className="flex gap-6">
-            <a href={personal.github} target="_blank" className="p-4 bg-surface rounded-full border-4 border-border text-text hover:-translate-y-2 hover:bg-[#e9c0e9] hover:shadow-[4px_4px_0_#1e2330] transition-all"><GithubIcon /></a>
-            <a href={personal.linkedin} target="_blank" className="p-4 bg-surface rounded-full border-4 border-border text-text hover:-translate-y-2 hover:bg-accent hover:shadow-[4px_4px_0_#1e2330] transition-all"><LinkedinIcon /></a>
-            <a href={`mailto:${personal.email}`} className="p-4 bg-surface rounded-full border-4 border-border text-text hover:-translate-y-2 hover:bg-[#7bd0e1] hover:shadow-[4px_4px_0_#1e2330] transition-all"><GmailIcon /></a>
+            <a href={personal.github} target="_blank" className="p-4 bg-surface rounded-full border-4 border-border text-text hover:-translate-y-2 hover:bg-[#e9c0e9] hover:shadow-[4px_4px_0_var(--color-shadow)] transition-all"><GithubIcon /></a>
+            <a href={personal.linkedin} target="_blank" className="p-4 bg-surface rounded-full border-4 border-border text-text hover:-translate-y-2 hover:bg-accent hover:shadow-[4px_4px_0_var(--color-shadow)] transition-all"><LinkedinIcon /></a>
+            <a href={`mailto:${personal.email}`} className="p-4 bg-surface rounded-full border-4 border-border text-text hover:-translate-y-2 hover:bg-[#7bd0e1] hover:shadow-[4px_4px_0_var(--color-shadow)] transition-all"><GmailIcon /></a>
           </div>
-          <p className="font-mono font-bold text-bg/50">© {new Date().getFullYear()} {personal.name}</p>
+          <p className="font-mono font-bold text-text-light/50">© {new Date().getFullYear()} {personal.name}</p>
         </div>
       </footer>
     </div>

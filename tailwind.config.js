@@ -1,20 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class', // Enable dark mode class strategy
   theme: {
     extend: {
       colors: {
-        bg: '#f3f3f1', // Linktree Sand (Light Mode Base)
-        surface: '#ffffff', // White
-        card: '#e9c0e9', // Linktree Pink/Lilac
-        border: '#1e2330', // Charcoal
-        accent: '#d2e823', // Linktree Neon Yellow
-        accent2: '#254f1a', // Linktree Deep Green
-        text: '#1e2330', // Charcoal/Black
-        'text-light': '#ffffff', // White
+        bg: 'var(--color-bg)',
+        surface: 'var(--color-surface)',
+        card: 'var(--color-card)',
+        border: 'var(--color-border)',
+        accent: 'var(--color-accent)',
+        accent2: 'var(--color-accent2)',
+        text: 'var(--color-text)',
+        'text-light': 'var(--color-text-light)',
       },
       fontFamily: {
-        // Linktree uses a very bold sans-serif, let's use Inter but boldest weights
         display: ['"Inter"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],

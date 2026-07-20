@@ -103,7 +103,7 @@ export default function Chatbot() {
       {/* Floating bubble */}
       <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#ff9a9e] border-4 border-border flex items-center justify-center neo-shadow transition-transform hover:-translate-y-2 hover:shadow-[8px_8px_0_#1e2330]"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#ff9a9e] border-4 border-border flex items-center justify-center neo-shadow transition-transform hover:-translate-y-2 hover:shadow-[8px_8px_0_var(--color-shadow)]"
         whileTap={{ scale: 0.94 }}
         animate={open ? {} : { y: [0, -6, 0] }}
         transition={open ? {} : { duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -111,11 +111,11 @@ export default function Chatbot() {
         <AnimatePresence mode="wait">
           {open ? (
             <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-              <X size={28} className="text-text" />
+              <X size={28} className="text-[#1e2330]" />
             </motion.div>
           ) : (
             <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-              <MessageCircle size={28} className="text-text" />
+              <MessageCircle size={28} className="text-[#1e2330]" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -147,16 +147,16 @@ export default function Chatbot() {
                 <Bot size={20} className="text-text" />
               </div>
               <div>
-                <p className="text-xl font-display font-black text-text">Faran's Assistant</p>
+                <p className="text-xl font-display font-black text-[#1e2330]">Faran's Assistant</p>
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-green-400 border-2 border-border" />
-                  <span className="text-sm font-bold text-text/80 font-body">Powered by Gemini</span>
+                  <span className="text-sm font-bold text-[#1e2330]/80 font-body">Powered by Gemini</span>
                 </div>
               </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-5 py-6 space-y-6 bg-[#fbc2eb]/10">
+            <div className="flex-1 overflow-y-auto px-5 py-6 space-y-6 bg-surface">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -165,15 +165,15 @@ export default function Chatbot() {
                   transition={{ duration: 0.25 }}
                   className={`flex items-end gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
                 >
-                  <div className={`w-8 h-8 rounded-full border-4 border-border flex-shrink-0 flex items-center justify-center shadow-[2px_2px_0_#1e2330] ${
+                  <div className={`w-8 h-8 rounded-full border-4 border-border flex-shrink-0 flex items-center justify-center shadow-[2px_2px_0_var(--color-shadow)] ${
                     msg.role === 'assistant' ? 'bg-[#e9c0e9]' : 'bg-[#d2e823]'
                   }`}>
-                    {msg.role === 'assistant' ? <Bot size={16} className="text-text" /> : <User size={16} className="text-text" />}
+                    {msg.role === 'assistant' ? <Bot size={16} className="text-[#1e2330]" /> : <User size={16} className="text-[#1e2330]" />}
                   </div>
-                  <div className={`max-w-[75%] rounded-2xl px-4 py-3 text-base font-bold font-body leading-relaxed whitespace-pre-wrap border-4 border-border shadow-[4px_4px_0_#1e2330] ${
+                  <div className={`max-w-[75%] rounded-2xl px-4 py-3 text-base font-bold font-body leading-relaxed whitespace-pre-wrap border-4 border-border shadow-[4px_4px_0_var(--color-shadow)] ${
                     msg.role === 'user'
-                      ? 'bg-accent text-text rounded-br-sm'
-                      : 'bg-surface text-text rounded-bl-sm'
+                      ? 'bg-accent text-[#1e2330] rounded-br-sm'
+                      : 'bg-[#e9c0e9] text-[#1e2330] rounded-bl-sm'
                   }`}>
                     {msg.content}
                   </div>
@@ -182,12 +182,12 @@ export default function Chatbot() {
 
               {loading && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-end gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#e9c0e9] border-4 border-border shadow-[2px_2px_0_#1e2330] flex items-center justify-center flex-shrink-0">
-                    <Bot size={16} className="text-text" />
+                  <div className="w-8 h-8 rounded-full bg-[#e9c0e9] border-4 border-border shadow-[2px_2px_0_var(--color-shadow)] flex items-center justify-center flex-shrink-0">
+                    <Bot size={16} className="text-[#1e2330]" />
                   </div>
-                  <div className="bg-surface border-4 border-border shadow-[4px_4px_0_#1e2330] rounded-2xl rounded-bl-sm px-5 py-4 flex items-center gap-2">
+                  <div className="bg-[#e9c0e9] border-4 border-border shadow-[4px_4px_0_var(--color-shadow)] rounded-2xl rounded-bl-sm px-5 py-4 flex items-center gap-2">
                     {[0, 1, 2].map((d) => (
-                      <motion.div key={d} className="w-2.5 h-2.5 rounded-full bg-text"
+                      <motion.div key={d} className="w-2.5 h-2.5 rounded-full bg-[#1e2330]"
                         animate={{ y: [0, -6, 0] }}
                         transition={{ duration: 0.6, repeat: Infinity, delay: d * 0.15 }}
                       />
@@ -201,7 +201,7 @@ export default function Chatbot() {
                   <p className="text-sm font-black font-display uppercase tracking-tight text-text/60">Suggested questions</p>
                   {SUGGESTED.map((q) => (
                     <button key={q} onClick={() => send(q)}
-                      className="block w-full text-left font-bold text-base font-body text-text border-4 border-border bg-surface rounded-xl px-4 py-3 shadow-[4px_4px_0_#1e2330] hover:-translate-y-1 hover:bg-[#d2e823] transition-all">
+                      className="block w-full text-left font-bold text-base font-body text-text border-4 border-border bg-surface rounded-xl px-4 py-3 shadow-[4px_4px_0_var(--color-shadow)] hover:-translate-y-1 hover:bg-[#d2e823] transition-all">
                       {q}
                     </button>
                   ))}
@@ -219,15 +219,15 @@ export default function Chatbot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKey}
                   placeholder="Ask about Faran…"
-                  className="flex-1 bg-bg border-4 border-border rounded-xl px-4 py-3 text-base text-text font-bold font-body placeholder-text/40 outline-none focus:border-accent shadow-[4px_4px_0_#1e2330] transition-colors"
+                  className="flex-1 bg-bg border-4 border-border rounded-xl px-4 py-3 text-base text-text font-bold font-body placeholder-text/40 outline-none focus:border-accent shadow-[4px_4px_0_var(--color-shadow)] transition-colors"
                   disabled={loading}
                 />
                 <button
                   onClick={() => send(input)}
                   disabled={!input.trim() || loading}
-                  className="w-14 h-14 rounded-xl border-4 border-border bg-accent flex items-center justify-center hover:-translate-y-1 hover:bg-accent2 shadow-[4px_4px_0_#1e2330] transition-all disabled:opacity-40 disabled:hover:translate-y-0 flex-shrink-0"
+                  className="w-14 h-14 rounded-xl border-4 border-border bg-accent flex items-center justify-center hover:-translate-y-1 hover:bg-accent2 shadow-[4px_4px_0_var(--color-shadow)] transition-all disabled:opacity-40 disabled:hover:translate-y-0 flex-shrink-0"
                 >
-                  {loading ? <Loader2 size={24} className="text-text animate-spin" /> : <Send size={24} className="text-text" />}
+                  {loading ? <Loader2 size={24} className="text-[#1e2330] animate-spin" /> : <Send size={24} className="text-[#1e2330]" />}
                 </button>
               </div>
             </div>

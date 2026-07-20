@@ -4,25 +4,69 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-bg: #f3f3f1;
+    --color-surface: #ffffff;
+    --color-card: #e9c0e9;
+    --color-border: #1e2330;
+    --color-accent: #d2e823;
+    --color-accent2: #254f1a;
+    --color-text: #1e2330;
+    --color-text-light: #ffffff;
+    --color-shadow: #1e2330;
+  }
+  
+  .dark {
+    --color-bg: #0a0c10;
+    --color-surface: #13171f;
+    --color-card: #e9c0e9;
+    --color-border: #e2e8f0;
+    --color-accent: #d2e823;
+    --color-accent2: #254f1a;
+    --color-text: #ffffff;
+    --color-text-light: #1e2330;
+    --color-shadow: #e2e8f0;
+  }
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background-color: #f3f3f1; color: #1e2330; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+body { 
+  background-color: var(--color-bg); 
+  color: var(--color-text); 
+  font-family: 'Inter', sans-serif; 
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f3f3f1; }
-::-webkit-scrollbar-thumb { background: #d2e823; border-radius: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 4px; }
 
-::selection { background: #d2e823; color: #1e2330; }
+::selection { background: var(--color-accent); color: #1e2330; }
 
 @layer utilities {
   .neo-shadow {
-    box-shadow: 4px 4px 0px #1e2330;
+    box-shadow: 4px 4px 0px var(--color-shadow);
+  }
+  .neo-shadow-sm {
+    box-shadow: 2px 2px 0px var(--color-shadow);
+  }
+  .neo-shadow-md {
+    box-shadow: 6px 6px 0px var(--color-shadow);
+  }
+  .neo-shadow-lg {
+    box-shadow: 8px 8px 0px var(--color-shadow);
+  }
+  .neo-shadow-xl {
+    box-shadow: 12px 12px 0px var(--color-shadow);
   }
   .neo-shadow-hover {
     transition: all 0.2s ease;
   }
   .neo-shadow-hover:hover {
-    box-shadow: 6px 6px 0px #1e2330;
+    box-shadow: 6px 6px 0px var(--color-shadow);
     transform: translate(-2px, -2px);
   }
 }

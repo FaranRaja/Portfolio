@@ -1,66 +1,37 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export default function Cursor() {
-  const ringRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    let dotX = 0, dotY = 0;
-    let hovering = false;
-    let raf: number;
+    // Disable on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
 
-    const onMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      const el = (e.target as HTMLElement).closest('a, button, [data-hover]');
-      hovering = !!el;
-    };
+    // Windows XP Style Cursors (Base64 SVG)
+    // Default Arrow
+    const xpArrow = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="white" stroke="black" stroke-width="1.5" stroke-linejoin="miter" d="M4 4v20l6-5 4 9 3-1-4-9 6-1z"/></svg>`;
+    
+    // Pointer (Hand)
+    const xpHand = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="white" stroke="black" stroke-width="1.5" stroke-linejoin="miter" d="M12 2v6h2V4h2v6h2V6h2v6h2v6l-4 6H9l-5-5v-6h3l2 3V2z"/></svg>`;
 
-    const tick = () => {
-      // Dot follows instantly
-      dotX += (mouseX - dotX) * 0.85;
-      dotY += (mouseY - dotY) * 0.85;
-
-      // Ring lags smoothly
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${dotX - 3}px, ${dotY - 3}px)`;
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @media (pointer: fine) {
+        * {
+          cursor: url('${xpArrow}') 4 4, auto !important;
+        }
+        a, button, input, textarea, [role="button"], .cursor-hover,
+        a *, button *, [role="button"] * {
+          cursor: url('${xpHand}') 12 2, pointer !important;
+        }
       }
-      if (ringRef.current) {
-        const scale = hovering ? 1.7 : 1;
-        ringRef.current.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px) scale(${scale})`;
-        ringRef.current.style.borderColor = hovering ? 'rgba(124,106,255,0.9)' : 'rgba(124,106,255,0.5)';
-        ringRef.current.style.background = hovering ? 'rgba(124,106,255,0.1)' : 'transparent';
-      }
-
-      raf = requestAnimationFrame(tick);
-    };
-
-    window.addEventListener('mousemove', onMove);
-    raf = requestAnimationFrame(tick);
+    `;
+    document.head.appendChild(style);
 
     return () => {
-      window.removeEventListener('mousemove', onMove);
-      cancelAnimationFrame(raf);
+      document.head.removeChild(style);
     };
   }, []);
 
-  return (
-    <>
-      <div
-        ref={ringRef}
-        className="fixed top-0 left-0 z-[9999] pointer-events-none w-10 h-10 rounded-full border transition-colors duration-200"
-        style={{ willChange: 'transform', borderColor: 'rgba(124,106,255,0.5)' }}
-      />
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 z-[9999] pointer-events-none w-1.5 h-1.5 rounded-full bg-accent"
-        style={{ willChange: 'transform' }}
-      />
-    </>
-  );
+  return null;
 }
